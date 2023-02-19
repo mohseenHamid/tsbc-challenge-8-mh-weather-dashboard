@@ -1,0 +1,167 @@
+html {
+	/* Converts root from 16px to 10px */
+	font-size: 62.5%;
+}
+
+body {
+	/* 1rem = 10px => sets body default to 16px for legibility */
+	font-size: 1.6rem;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	font-size: 8rem;
+}
+
+h2 {
+	font-size: 5rem;
+	font-weight: bold;
+}
+
+h3 {
+	font-size: 2.5rem;
+}
+
+h4 {
+	font-size: 2rem;
+}
+
+p {
+	font-size: 2rem;
+}
+
+/* header */
+header {
+	background: #210606;
+}
+
+/* jumbotron */
+.jumbotron {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+}
+
+/* Search Column */
+.search-col,
+#history {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+#location-search {
+	width: 100%;
+	padding: 0.5rem 1rem;
+}
+.dropdown-item {
+	display: flex !important;
+	justify-content: flex-start !important;
+	padding: 0.5rem 1rem;
+	font-size: 1.5rem;
+}
+
+.line-break {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 2px;
+	background: #210606;
+
+	margin: 2rem 0;
+	border-radius: 15px;
+}
+
+.btn-danger,
+#location-search {
+	border-radius: 5px;
+}
+
+/* Weather Display Col */
+.row {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.mt-3,
+.pb-3 {
+	margin-top: 2rem !important;
+}
+
+#today {
+	margin-top: 0 !important;
+}
+
+#today,
+#forecast {
+	border: black 2px solid;
+	padding: 2rem;
+
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.forecast-col {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+/* Today Row */
+.weather-icon-img {
+	min-width: 50%;
+}
+
+#today-title-container {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 2rem;
+	font-size: 5rem;
+
+	font-weight: bold;
+}
+
+#today-details,
+.forecast-day-container-details-div {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+
+	/* flex: 1; */
+}
+
+/* Forecast Row */
+#forecast-items-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2rem;
+	justify-content: space-between;
+}
+
+.forecast-day-container {
+	border: black 2px solid;
+	padding: 2rem;
+	flex: 1;
+
+	background-color: wheat;
+}

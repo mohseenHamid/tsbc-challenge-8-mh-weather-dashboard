@@ -19,20 +19,41 @@
 	</head>
 
 	<body>
-		<header
-			class="container-fluid text-center text-white bg-dark p-2 weather-header"
-		>
+		<header class="container-fluid text-center text-white p-2 weather-header">
 			<h1>Weather Dashboard</h1>
 		</header>
 
+		<div class="jumbotron jumbotron-fluid">
+			<h3 id="curr-date"></h3>
+			<h3 id="curr-time"></h3>
+		</div>
+
 		<!-- max-width for ultra wide resolutions -->
-		<div class="container-fluid" style="max-width: 1400px">
+		<div class="container-fluid">
 			<div class="row">
-				<aside class="col-lg-3 pb-3">
+				<aside class="col-lg-3 pb-3 search-col">
 					<h2 id="form-heading" class="mt-1 h3 form-label">
 						Search for a City:
 					</h2>
-					<form id="search-form" class="form">
+
+					<div class="dropdown search-div">
+						<input
+							type="text"
+							placeholder="London"
+							id="location-search"
+							class="dropdown-toggle"
+							aria-haspopup="true"
+							aria-expanded="false"
+						/>
+
+						<div
+							class="dropdown-menu"
+							id="search-menu"
+							aria-labelledby="dropdownMenuButton"
+						></div>
+					</div>
+
+					<!-- <form id="search-form" class="form">
 						<div class="form-inline form-group">
 							<div class="input-group">
 								<input
@@ -43,6 +64,7 @@
 									aria-labelledby="form-heading"
 									aria-controls="today forecast"
 								/>
+
 								<div class="input-group-append">
 									<button
 										type="submit"
@@ -52,27 +74,32 @@
 									>
 										Search
 									</button>
+
 									<hr class="hr weather-hr" />
 								</div>
 							</div>
 						</div>
-					</form>
+					</form> -->
+
+					<div class="line-break"></div>
+
 					<div class="list-group" id="history"></div>
 				</aside>
 
-				<div class="col-lg-9 pb-3">
-					<section
-						id="today"
-						class="mt-3"
-						role="region"
-						aria-live="polite"
-					></section>
-					<section
-						id="forecast"
-						class="row mt-3"
-						role="region"
-						aria-live="polite"
-					></section>
+				<div class="col-lg-9 pb-3 forecast-col">
+					<section id="today">
+						<div id="today-title-container"></div>
+
+						<div id="today-details"></div>
+					</section>
+
+					<section id="forecast">
+						<div id="forecast-title-container">
+							<h2 id="forecast-title">5-Day Forecast</h2>
+						</div>
+
+						<div id="forecast-items-row"></div>
+					</section>
 				</div>
 			</div>
 		</div>
