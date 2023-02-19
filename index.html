@@ -36,50 +36,35 @@
 						Search for a City:
 					</h2>
 
-					<div class="dropdown search-div">
-						<input
-							type="text"
-							placeholder="London"
-							id="location-search"
-							class="dropdown-toggle"
-							aria-haspopup="true"
-							aria-expanded="false"
-						/>
+					<form id="search-form" class="form dropdown search-div">
+						<div class="input-group">
+							<input
+								type="text"
+								placeholder="London"
+								id="location-search"
+								class="form-input dropdown-toggle"
+								aria-haspopup="true"
+								aria-expanded="false"
+							/>
 
-						<div
-							class="dropdown-menu"
-							id="search-menu"
-							aria-labelledby="dropdownMenuButton"
-						></div>
-					</div>
-
-					<!-- <form id="search-form" class="form">
-						<div class="form-inline form-group">
-							<div class="input-group">
-								<input
-									class="form-input weather-search"
-									type="text"
-									id="search-input"
-									placeholder="London"
-									aria-labelledby="form-heading"
-									aria-controls="today forecast"
-								/>
-
-								<div class="input-group-append">
-									<button
-										type="submit"
-										class="btn search-button"
-										id="search-button"
-										aria-label="submit search"
-									>
-										Search
-									</button>
-
-									<hr class="hr weather-hr" />
-								</div>
-							</div>
+							<div
+								class="dropdown-menu"
+								id="search-menu"
+								aria-labelledby="dropdownMenuButton"
+							></div>
 						</div>
-					</form> -->
+
+						<div class="input-group-append">
+							<button
+								type="submit"
+								class="btn-danger"
+								id="search-button"
+								aria-label="submit search"
+							>
+								Search
+							</button>
+						</div>
+					</form>
 
 					<div class="line-break"></div>
 

@@ -68,6 +68,16 @@ header {
 	gap: 1rem;
 }
 
+.search-div {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+#search-button {
+	width: 100%;
+}
+
 #location-search {
 	width: 100%;
 	padding: 0.5rem 1rem;

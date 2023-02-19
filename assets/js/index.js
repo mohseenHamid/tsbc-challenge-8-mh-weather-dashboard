@@ -41,6 +41,8 @@ const searchDiv = $(".search-div");
 const locSearchBar = $("#location-search");
 const searchMenu = $("#search-menu");
 const historyDiv = $("#history");
+const errMsg = $("#err-msg");
+const searchBtn = $("#search-button");
 
 // Column 2 -> Results
 const todaySection = $("#today");
@@ -237,7 +239,6 @@ function getWeather(params) {
 
 	// Extract location geocode API details
 	let locObject = JSON.parse(params.attr("data-loc-object"));
-	// console.log(locObject);
 
 	// Get weather data via lon & lat API call
 	let lat = locObject.lat;
@@ -326,23 +327,6 @@ function saveSearch(params) {
 	let countryName = locObject.countryName;
 	let stateName = locObject.stateName;
 
-	// // Populate historyDiv
-	// // Create a button
-	// let historyItem = $("<button>");
-	// historyItem.text(`${locName}, ${stateName}, ${countryName}`);
-	// historyItem.addClass("btn-danger saved-search");
-
-	// // Add locObject as a data attribute as a string
-	// historyItem.attr("data-loc-object", JSON.stringify(locObject));
-
-	// // Append item to the searchMenu
-	// historyDiv.append(historyItem);
-
-	// // Add click event listener to history item
-	// historyItem.on("click", function () {
-	// 	getWeather(historyItem);
-	// });
-
 	// localStorage
 	// Checking if localStorage is populated and retrieve data if so
 	let savedLocationsArray = [];
@@ -400,8 +384,6 @@ function searchLocationInput(location) {
 		method: "GET",
 		url: `https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=30&appid=6d0b8f00a5e89b3778bf56d92924ed24`,
 		success: function (result) {
-			// console.log(result);
-
 			// Empty the searchMenu on each keystroke before repopulating
 			searchMenu.empty();
 
@@ -433,14 +415,8 @@ function searchLocationInput(location) {
 }
 
 // Callback ftn for search bar typing input
-function returnSearchResults(event) {
-	if (event.keyCode !== 27 && event.keyCode !== 8) {
-		searchDiv.css("cursor", "progress");
-		locSearchBar.css("cursor", "progress");
-	} else {
-		searchDiv.css("cursor", "pointer");
-		locSearchBar.css("cursor", "auto");
-	}
+function returnSearchResults(e) {
+	e.preventDefault();
 
 	// Grabs the input field text and stores in variable
 	const locInputString = locSearchBar.val().trim();
@@ -449,34 +425,71 @@ function returnSearchResults(event) {
 	searchMenu.css("display", "none");
 
 	// Prevents response results for <2 characters as <2 gives too many results
-	if (locInputString.length > 2 && event.keyCode !== 27) {
+	if (locInputString.length > 2) {
 		// If >2 characters are typed, the geoCode API "searchLocationInput" ftn is called to populate the search menu
 		searchLocationInput(locInputString);
+		// Progress cursor
+		searchDiv.css("cursor", "progress");
+		locSearchBar.css("cursor", "progress");
 
 		// Only displays the search menu once API returns data
 		setTimeout(() => {
 			if (searchMenu.children().length == 0) {
 				searchMenu.css("display", "none");
+				searchDiv.css("cursor", "pointer");
+				locSearchBar.css("cursor", "auto");
+
+				searchBtn.text("Please enter a valid location");
+				searchBtn.css("color", "yellow");
+
+				setTimeout(() => {
+					searchBtn.text("Search");
+					searchBtn.css("color", "white");
+				}, 2000);
 			} else {
 				searchMenu.css("display", "block");
 				searchDiv.css("cursor", "pointer");
 				locSearchBar.css("cursor", "auto");
 			}
 		}, 1500);
-	} else if (locInputString.length < 3) {
+	} else if (locInputString.length < 3 && locInputString.length > 0) {
 		searchMenu.empty();
 	}
 	// Enables the escape key to clear the input field
-	else if (event.keyCode == 27) {
+	else if (e.keyCode == 27) {
 		$(this).val("");
 		searchMenu.empty();
+	} else if (locInputString.length == 0) {
+		searchBtn.text("Please enter a location");
+		searchBtn.css("color", "yellow");
+
+		setTimeout(() => {
+			searchBtn.text("Search");
+			searchBtn.css("color", "white");
+		}, 2000);
+	}
+}
+
+function searchBarInput(e) {
+	if (e.keyCode !== 27 && e.keyCode !== 8) {
+	} else if (e.keyCode == 27) {
+		locSearchBar.val("");
+		searchMenu.empty();
+		searchMenu.css("display", "none");
+	} else if (e.keyCode == 8) {
+		searchMenu.empty();
+		searchMenu.css("display", "none");
 	}
 }
 
 // Document Ready Event Handlers
 $(function () {
 	// Keyup event listener for movie search input field
-	locSearchBar.on("keyup", returnSearchResults);
+	locSearchBar.on("keyup", searchBarInput);
+
+	$("#search-form").submit(returnSearchResults);
+
+	$("#search-button").on("click", returnSearchResults);
 
 	// Render historyDiv with saved searches
 	renderSavedSearches();
