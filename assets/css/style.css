@@ -69,10 +69,6 @@ button {
 	font-size: 1.5rem;
 }
 
-/* header */
-header {
-}
-
 /* jumbotron */
 .jumbotron {
 	width: 100%;
@@ -188,9 +184,6 @@ header {
 	font-size: 5rem;
 
 	font-weight: bold;
-}
-
-.today-title-detail {
 }
 
 #today-details,
