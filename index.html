@@ -1,40 +1,65 @@
 <!DOCTYPE html>
 <html lang="en-gb">
 	<head>
+		<!-- Metadata -->
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
+		<!-- Fonts -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Comfortaa"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css?family=Pacifico"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css?family=Homenaje"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+		/>
+
+		<!-- Stylesheets -->
+		<!-- Bootstrap -->
 		<link
 			rel="stylesheet"
 			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		/>
+		<!-- Font Awesome -->
 		<link
 			rel="stylesheet"
 			href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 		/>
+		<!-- Custom CSS -->
 		<link rel="stylesheet" href="./assets/css/style.css" />
 
-		<title>Weather Dashboard</title>
+		<!-- Page Tab Title -->
+		<title>15:00 Weather Dashboard</title>
 	</head>
 
 	<body>
-		<header class="container-fluid text-center text-white p-2 weather-header">
+		<!-- <header class="container-fluid text-center p-2 weather-header">
 			<h1>Weather Dashboard</h1>
-		</header>
+		</header> -->
 
 		<div class="jumbotron jumbotron-fluid">
-			<h3 id="curr-date"></h3>
-			<h3 id="curr-time"></h3>
+			<h1>Weather Dashboard</h1>
+
+			<h3 id="header-date-time"></h3>
 		</div>
 
 		<!-- max-width for ultra wide resolutions -->
 		<div class="container-fluid">
 			<div class="row">
 				<aside class="col-lg-3 pb-3 search-col">
-					<h2 id="form-heading" class="mt-1 h3 form-label">
-						Please enter a <span id="form-heading-span">valid</span> location:
-					</h2>
+					<h3 id="form-heading" class="mt-1 form-label">
+						Enter a <span id="form-heading-span">valid</span> City:
+					</h3>
 
 					<form id="search-form" class="form dropdown search-div">
 						<div class="input-group">
@@ -80,7 +105,7 @@
 
 					<section id="forecast">
 						<div id="forecast-title-container">
-							<h2 id="forecast-title">5-Day Forecast</h2>
+							<h2 id="forecast-title">5-Day Forecast (15:00)</h2>
 						</div>
 
 						<div id="forecast-items-row"></div>

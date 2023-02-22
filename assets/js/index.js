@@ -33,8 +33,7 @@
 // --- MY CODE ---
 // Global HTML elements
 // Header Div
-const dateEl = $("#curr-date");
-const timeEl = $("#curr-time");
+const headerDateTimeEl = $("#header-date-time");
 
 // Column 1 -> Search
 const searchDiv = $(".search-div");
@@ -52,10 +51,27 @@ const forecastSection = $("#forecast");
 const forecastItemsRow = $("#forecast-items-row");
 
 // --- Generic Page Functions
+// Reverse Array (Used to reverse date string extracted from API data)
+function reverseDateString(string) {
+	let strArray = string.split("-");
+	let reverseStrArray = strArray.reverse();
+	let reverseStr = reverseStrArray.join("-");
+
+	return reverseStr;
+}
+
 // Display and update date and time in header
+headerDateTimeEl.text(
+	`Date: ${moment().format("ddd DD/MM/YY")} | Time: ${moment().format("HH:mm")}`
+);
+
 setInterval(() => {
-	dateEl.text(`Date: ${moment().format("ddd DD/MM/YY")}`);
-	timeEl.text(`Time: ${moment().format("HH:mm:ss")}`);
+	// headerDateTimeEl.text(`Date: ${moment().format("ddd DD/MM/YY")} | `);
+	headerDateTimeEl.text(
+		`Date: ${moment().format("ddd DD/MM/YY")} | Time: ${moment().format(
+			"HH:mm"
+		)}`
+	);
 }, 1000);
 
 // Default display of London's weather
@@ -81,6 +97,7 @@ function defaultWeatherDisplay() {
 				success: function (result) {
 					// --- Current Forecast Data ---
 					let currDataObj = result.list[0];
+					console.log(currDataObj);
 					currDataObj.locName = locName;
 					currDataObj.countryName = countryName;
 					currDataObj.stateName = stateName;
@@ -123,7 +140,9 @@ function displayFiveDayWeather(fiveDayArray) {
 		// Container Title Date
 		const forecastDayDate = $("<h3>");
 		forecastDayDate.addClass("forecast-day-date");
-		forecastDayDate.text(dayDataObj.dt_txt.substr(0, 10));
+
+		let fiveDayDate = reverseDateString(dayDataObj.dt_txt.substr(5, 5));
+		forecastDayDate.text(fiveDayDate);
 		forecastDayContainerTitleDiv.append(forecastDayDate);
 		// Container Title Weather icon div + img
 		// Create container for icon
@@ -190,7 +209,11 @@ function displayCurrWeather(currDataObj) {
 	const todayTitleDate = $("<span>");
 	todayTitleDate.addClass("today-title-detail");
 	todayTitleDate.attr("id", "today-date");
-	todayTitleDate.text(`(${currDataObj.dt_txt.substr(0, 10)})`);
+	todayTitleDate.text(
+		`(${reverseDateString(
+			currDataObj.dt_txt.substr(11, 5)
+		)}, ${reverseDateString(currDataObj.dt_txt.substr(5, 5))}) `
+	);
 	todayTitleContainer.append(todayTitleDate);
 
 	// Weather icon
@@ -201,6 +224,7 @@ function displayCurrWeather(currDataObj) {
 	// Create img tag for icon
 	const todayWeatherIconImg = $("<img>");
 	todayWeatherIconImg.addClass("weather-icon-img");
+	todayWeatherIconImg.attr("id", "today-weather-icon-img");
 	todayWeatherIconImg.attr(
 		"src",
 		`http://openweathermap.org/img/w/${currDataObj.weather[0].icon}.png`
