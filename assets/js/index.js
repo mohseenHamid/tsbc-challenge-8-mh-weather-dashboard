@@ -179,6 +179,7 @@ function displayCurrWeather(currDataObj) {
 	// --- Weather Title Container ---
 	// Weather Location
 	const todayTitleLoc = $("<span>");
+	todayTitleLoc.addClass("today-title-detail");
 	todayTitleLoc.attr("id", "today-loc");
 	todayTitleLoc.text(
 		`${currDataObj.locName}, ${currDataObj.stateName}, ${currDataObj.countryName}`
@@ -187,6 +188,7 @@ function displayCurrWeather(currDataObj) {
 
 	// Weather Date
 	const todayTitleDate = $("<span>");
+	todayTitleDate.addClass("today-title-detail");
 	todayTitleDate.attr("id", "today-date");
 	todayTitleDate.text(`(${currDataObj.dt_txt.substr(0, 10)})`);
 	todayTitleContainer.append(todayTitleDate);
@@ -194,6 +196,7 @@ function displayCurrWeather(currDataObj) {
 	// Weather icon
 	// Create container for icon
 	const todayTitleIcon = $("<span>");
+	todayTitleIcon.addClass("today-title-detail");
 	todayTitleIcon.attr("id", "today-weather-icon-container");
 	// Create img tag for icon
 	const todayWeatherIconImg = $("<img>");
@@ -441,10 +444,12 @@ function returnSearchResults(e) {
 
 				searchBtn.text("Please enter a valid location");
 				searchBtn.css("color", "yellow");
+				$("#form-heading-span").css("color", "red");
 
 				setTimeout(() => {
 					searchBtn.text("Search");
 					searchBtn.css("color", "white");
+					$("#form-heading-span").css("color", "black");
 				}, 2000);
 			} else {
 				searchMenu.css("display", "block");

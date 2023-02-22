@@ -145,10 +145,14 @@ header {
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
+	flex-wrap: wrap;
 	gap: 2rem;
 	font-size: 5rem;
 
 	font-weight: bold;
+}
+
+.today-title-detail {
 }
 
 #today-details,
